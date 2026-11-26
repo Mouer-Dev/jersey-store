@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Premium football jersey collection — browse the catalog or message us on WhatsApp. Worldwide delivery.">
+  <meta name="description" content="Premium soccer jersey collection — browse the catalog or message us on WhatsApp. Worldwide delivery.">
   <meta name="theme-color" content="#eef4e6">
-  <title>FOOTBALL JERSEYS</title>
+  <title>SOCCER JERSEYS</title>
   <link rel="preconnect" href="https://miaoda.feishu.cn">
   <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Anton&family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap">
   <style>
@@ -174,29 +174,30 @@
       margin: 0 12px;
     }
 
-    /* ===== browser hint arrow ===== */
+    /* ===== browser hint cartoon arrow ===== */
     .browser-hint {
-      position: fixed; top: 30px; right: 2px; z-index: 50;
-      display: flex; align-items: center; gap: 4px;
+      position: fixed; top: 14px; right: 10px; z-index: 50;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 2px;
       pointer-events: none;
       opacity: 1;
-      transition: opacity .4s ease;
-      animation: hintFade 10s ease forwards;
+      transition: opacity .35s ease;
     }
-    .browser-hint svg { width: 150px; height: 92px; overflow: visible; }
-    .hint-path { stroke: #14532d; fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
-    .hint-head { fill: #14532d; stroke: none; }
+    .browser-hint svg { width: 124px; height: 92px; overflow: visible; }
+    .hint-path { stroke: #e53935; fill: none; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    .hint-loop { stroke: #e53935; fill: none; stroke-width: 5.5; stroke-linecap: round; }
+    .hint-head { fill: #e53935; stroke: none; }
     .hint-label {
-      background: #14532d; color: #fff; font-weight: 700; font-size: 13px;
-      padding: 7px 12px; border-radius: 999px; letter-spacing: .02em; white-space: nowrap;
-      box-shadow: 0 4px 14px rgba(20,60,35,.35);
-      animation: hintPulse 1.6s ease-in-out infinite;
+      font-family: 'Arial Rounded MT Bold', 'Comic Sans MS', 'Segoe UI', sans-serif;
+      background: #fff; color: #d32f2f; font-weight: 800; font-size: 13px;
+      padding: 6px 12px; border: 2px solid #e53935; border-radius: 14px;
+      letter-spacing: .01em; white-space: nowrap; transform: rotate(-3deg);
+      box-shadow: 0 3px 10px rgba(213,49,44,.25);
+      animation: hintBounce 1.4s ease-in-out infinite;
     }
-    .browser-hint .hint-arrow-body { animation: hintNudge 1.6s ease-in-out infinite; }
+    .browser-hint .hint-arrow-body { animation: hintSwing 1.4s ease-in-out infinite; transform-origin: 70px 114px; }
     .browser-hint.hide { opacity: 0; visibility: hidden; }
-    @keyframes hintNudge { 0%,100% { transform: translate(0,0); } 50% { transform: translate(7px,-7px); } }
-    @keyframes hintPulse { 0%,100% { opacity: 1; } 50% { opacity: .72; } }
-    @keyframes hintFade { 0%,80% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes hintSwing { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
+    @keyframes hintBounce { 0%,100% { transform: rotate(-3deg) translateY(0); } 50% { transform: rotate(-3deg) translateY(-4px); } }
     @media (min-width: 481px) { .browser-hint { display: none; } }
 
     @media (max-width: 480px) {
@@ -227,10 +228,10 @@
   <main>
     <div class="top">
       <div class="badge">
-        <span>FOOTBALL<br>JERSEYS</span>
+        <span>SOCCER<br>JERSEYS</span>
         <i></i>
       </div>
-      <h1>FOOTBALL JERSEYS</h1>
+      <h1>SOCCER JERSEYS</h1>
       <p class="subtitle">Ready Stock · Worldwide<br>Shipping · No Minimum</p>
       <p class="intro">Click below to explore our Catalog or message us for the latest details 👇👇👇👇👇👇</p>
     </div>
@@ -272,20 +273,27 @@
   </main>
 
   <div class="browser-hint" id="browserHint">
-    <span class="hint-label">Open in browser</span>
-    <svg viewBox="0 0 160 104" aria-hidden="true">
+    <svg viewBox="0 0 170 120" aria-hidden="true">
       <g class="hint-arrow-body">
-        <path class="hint-path" d="M18 84 C 54 60, 98 34, 138 10"/>
-        <polygon class="hint-head" points="139,8 119,9 135,26"/>
+        <path class="hint-path" d="M70 114 C 40 104, 30 78, 48 60 C 62 46, 92 32, 140 14"/>
+        <path class="hint-loop" d="M52 76 a14 14 0 1 1 14 14"/>
+        <polygon class="hint-head" points="142,10 120,14 136,28"/>
       </g>
     </svg>
+    <span class="hint-label">Open in browser</span>
   </div>
 
   <script>
     (function () {
       var hint = document.getElementById('browserHint');
-      setTimeout(function () { hint.classList.add('hide'); }, 10000);
-      document.addEventListener('click', function () { hint.classList.add('hide'); });
+      var KEY = 'soccerHintDismissed';
+      function dismiss () {
+        hint.classList.add('hide');
+        try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      }
+      try { if (localStorage.getItem(KEY) === '1') hint.classList.add('hide'); } catch (e) {}
+      setTimeout(dismiss, 12000);
+      document.addEventListener('click', dismiss);
     })();
   </script>
 </body>
