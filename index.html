@@ -38,6 +38,16 @@
     .top, .actions, .footer { position: relative; z-index: 1; width: 100%; max-width: 100%; }
     h1, .subtitle, .intro { max-width: 100%; overflow-wrap: break-word; }
 
+    /* ===== delayed reveal: content fades in after 4s, background + hint stay visible ===== */
+    .top, .actions, .footer { opacity: 0; animation: pageReveal 1.6s ease forwards; }
+    .top { animation-delay: 4s; }
+    .actions { animation-delay: 4.3s; }
+    .footer { animation-delay: 4.6s; }
+    @keyframes pageReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: none; }
+    }
+
     /* ===== badge ===== */
     .badge {
       position: relative;
@@ -176,20 +186,20 @@
 
     /* ===== browser hint cartoon arrow ===== */
     .browser-hint {
-      position: fixed; top: 14px; right: 10px; z-index: 50;
-      display: flex; flex-direction: column; align-items: flex-end; gap: 2px;
+      position: fixed; top: 12px; right: 8px; z-index: 50;
+      display: flex; flex-direction: row; align-items: center; gap: 6px;
       pointer-events: none;
       opacity: 1;
       transition: opacity .35s ease;
     }
-    .browser-hint svg { width: 124px; height: 92px; overflow: visible; }
-    .hint-path { stroke: #e53935; fill: none; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
-    .hint-loop { stroke: #e53935; fill: none; stroke-width: 5.5; stroke-linecap: round; }
+    .browser-hint svg { width: 118px; height: 88px; overflow: visible; }
+    .hint-path { stroke: #e53935; fill: none; stroke-width: 6.5; stroke-linecap: round; stroke-linejoin: round; }
+    .hint-loop { stroke: #e53935; fill: none; stroke-width: 6; stroke-linecap: round; }
     .hint-head { fill: #e53935; stroke: none; }
     .hint-label {
       font-family: 'Arial Rounded MT Bold', 'Comic Sans MS', 'Segoe UI', sans-serif;
-      background: #fff; color: #d32f2f; font-weight: 800; font-size: 13px;
-      padding: 6px 12px; border: 2px solid #e53935; border-radius: 14px;
+      background: #fff; color: #d32f2f; font-weight: 800; font-size: 15px;
+      padding: 8px 15px; border: 2.5px solid #e53935; border-radius: 16px;
       letter-spacing: .01em; white-space: nowrap; transform: rotate(-3deg);
       box-shadow: 0 3px 10px rgba(213,49,44,.25);
       animation: hintBounce 1.4s ease-in-out infinite;
