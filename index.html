@@ -186,17 +186,18 @@
 
     /* ===== browser hint cartoon arrow ===== */
     .browser-hint {
-      position: fixed; top: 12px; right: 8px; z-index: 50;
-      display: flex; flex-direction: row; align-items: center; gap: 6px;
+      position: fixed; inset: 0; z-index: 50;
       pointer-events: none;
       opacity: 1;
       transition: opacity .35s ease;
     }
-    .browser-hint svg { width: 118px; height: 88px; overflow: visible; }
+    .browser-hint svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
     .hint-path { stroke: #e53935; fill: none; stroke-width: 6.5; stroke-linecap: round; stroke-linejoin: round; }
     .hint-loop { stroke: #e53935; fill: none; stroke-width: 6; stroke-linecap: round; }
     .hint-head { fill: #e53935; stroke: none; }
+    .hint-square { fill: rgba(255,255,255,.25); stroke: #e53935; stroke-width: 4; }
     .hint-label {
+      position: absolute; right: 12px; top: 16px;
       font-family: 'Arial Rounded MT Bold', 'Comic Sans MS', 'Segoe UI', sans-serif;
       background: #fff; color: #d32f2f; font-weight: 800; font-size: 15px;
       padding: 8px 15px; border: 2.5px solid #e53935; border-radius: 16px;
@@ -204,10 +205,19 @@
       box-shadow: 0 3px 10px rgba(213,49,44,.25);
       animation: hintBounce 1.4s ease-in-out infinite;
     }
-    .browser-hint .hint-arrow-body { animation: hintSwing 1.4s ease-in-out infinite; transform-origin: 70px 114px; }
+    .hint-box {
+      position: absolute; left: 50%; top: 62px; transform: translateX(-50%);
+      font-family: 'Arial Rounded MT Bold', 'Comic Sans MS', 'Segoe UI', sans-serif;
+      background: rgba(255,255,255,.92); color: #e53935; font-weight: 800; font-size: 19px;
+      padding: 12px 22px; border: 3px solid #e53935; border-radius: 14px;
+      white-space: nowrap; letter-spacing: .02em;
+      animation: hintBox 1.4s ease-in-out infinite;
+    }
+    .browser-hint .hint-arrow-body { animation: hintSwing 1.4s ease-in-out infinite; transform-origin: 195px 300px; }
     .browser-hint.hide { opacity: 0; visibility: hidden; }
-    @keyframes hintSwing { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
+    @keyframes hintSwing { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(3deg); } }
     @keyframes hintBounce { 0%,100% { transform: rotate(-3deg) translateY(0); } 50% { transform: rotate(-3deg) translateY(-4px); } }
+    @keyframes hintBox { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
     @media (min-width: 481px) { .browser-hint { display: none; } }
 
     @media (max-width: 480px) {
@@ -279,14 +289,16 @@
   </main>
 
   <div class="browser-hint" id="browserHint">
-    <svg viewBox="0 0 170 120" aria-hidden="true">
+    <svg viewBox="0 0 390 844" aria-hidden="true" preserveAspectRatio="xMidYMin meet">
       <g class="hint-arrow-body">
-        <path class="hint-path" d="M70 114 C 40 104, 30 78, 48 60 C 62 46, 92 32, 140 14"/>
-        <path class="hint-loop" d="M52 76 a14 14 0 1 1 14 14"/>
-        <polygon class="hint-head" points="142,10 120,14 136,28"/>
+        <path class="hint-path" d="M318 90 C 282 78, 266 60, 264 48 C 262 30, 318 18, 368 14"/>
+        <rect class="hint-square" x="250" y="44" width="24" height="24" rx="4"/>
+        <path class="hint-loop" d="M110 80 a14 14 0 1 1 14 14"/>
+        <polygon class="hint-head" points="368,6 346,14 362,28"/>
       </g>
     </svg>
     <span class="hint-label">Open in browser</span>
+    <span class="hint-box">open in browser</span>
   </div>
 
   <script>
