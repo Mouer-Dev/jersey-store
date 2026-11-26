@@ -40,9 +40,9 @@
 
     /* ===== delayed reveal: content fades in after 4s, background + hint stay visible ===== */
     .top, .actions, .footer { opacity: 0; animation: pageReveal 1.6s ease forwards; }
-    .top { animation-delay: 4s; }
-    .actions { animation-delay: 4.3s; }
-    .footer { animation-delay: 4.6s; }
+    .top { animation-delay: 3s; }
+    .actions { animation-delay: 3.3s; }
+    .footer { animation-delay: 3.6s; }
     @keyframes pageReveal {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: none; }
@@ -242,7 +242,7 @@
         <i></i>
       </div>
       <h1>SOCCER JERSEYS</h1>
-      <p class="subtitle">Ready Stock · Worldwide<br>Shipping · No Minimum</p>
+      <p class="subtitle">Ready Stock · Worldwide Shipping<br>No Minimum · After-sales guarantee</p>
       <p class="intro">Click below to explore our Catalog or message us for the latest details 👇👇👇👇👇👇</p>
     </div>
 
@@ -297,12 +297,22 @@
     (function () {
       var hint = document.getElementById('browserHint');
       var KEY = 'soccerHintDismissed';
+
+      // In-app webviews (WhatsApp / Instagram / TikTok / WeChat ...) show the hint;
+      // a standalone external browser (Safari / Chrome / etc.) does not.
+      var IN_APP = /WhatsApp|Instagram|FBAN|FBAV|FB_IAB|FB4A|Line\/|LineAndroid|Twitter|XApp|TikTok|SnowAurora|Musical\.ly|MicroMessenger|WeChat|QQ\/|DingTalk|Pinterest|Snapchat|Telegram|LinkedIn|Reddit|Discord|YouTube|Threads|KakaoTalk|NAVER|VKShare|baiduboxapp|Alipay|taobao|Douyin|aweme/i;
+      var ua = navigator.userAgent || "";
+      if (!IN_APP.test(ua)) {
+        hint.classList.add('hide');
+        return;
+      }
+
       function dismiss () {
         hint.classList.add('hide');
         try { localStorage.setItem(KEY, '1'); } catch (e) {}
       }
       try { if (localStorage.getItem(KEY) === '1') hint.classList.add('hide'); } catch (e) {}
-      setTimeout(dismiss, 12000);
+      setTimeout(dismiss, 10000);
     })();
   </script>
 </body>
