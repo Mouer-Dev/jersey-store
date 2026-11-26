@@ -300,7 +300,7 @@
 
       // In-app webviews (WhatsApp / Instagram / TikTok / WeChat ...) show the hint;
       // a standalone external browser (Safari / Chrome / etc.) does not.
-      var IN_APP = /WhatsApp|Instagram|FBAN|FBAV|FB_IAB|FB4A|Line\/|LineAndroid|Twitter|XApp|TikTok|SnowAurora|Musical\.ly|MicroMessenger|WeChat|QQ\/|DingTalk|Pinterest|Snapchat|Telegram|LinkedIn|Reddit|Discord|YouTube|Threads|KakaoTalk|NAVER|VKShare|baiduboxapp|Alipay|taobao|Douyin|aweme/i;
+      var IN_APP = /WhatsApp|Instagram|FBAN|FBAV|FB_IAB|FB4A|Line\/|LineAndroid|Twitter|XApp|TikTok|SnowAurora|Musical[\._]ly|musically|trill|ultralite|BytedanceWebview|ByteLocale|Spark\/|PIA\/|JsSdk\/|MicroMessenger|WeChat|QQ\/|DingTalk|Pinterest|Snapchat|Telegram|LinkedIn|Reddit|Discord|YouTube|Threads|KakaoTalk|NAVER|VKShare|baiduboxapp|Alipay|taobao|Douyin|aweme/i;
       var ua = navigator.userAgent || "";
       if (!IN_APP.test(ua)) {
         hint.classList.add('hide');
